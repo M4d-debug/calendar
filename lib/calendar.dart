@@ -159,6 +159,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _fetchEvents() async {
+    
     _events = {};
     List<Map<String, dynamic>> _results = await DB.query(CalendarItem.table);
     _data = _results.map((item) => CalendarItem.fromMap(item)).toList();
@@ -167,7 +168,7 @@ class _CalendarState extends State<Calendar> {
           .format(DateTime.parse(element.date.toString())));
       if (_events.containsKey(formattedDate)) {
         _events[formattedDate].add(
-          element.name.toString() + element.date.toString(), 
+          element.name.toString() + element.date, 
         );
       } else {
         _events[formattedDate] = [element.name.toString() + element.date.toString()];
